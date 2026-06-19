@@ -15,7 +15,6 @@
 
     @vite([
         'resources/css/app.css',
-        'resources/css/iicg.css',
         'resources/js/app.js'
     ])
 
