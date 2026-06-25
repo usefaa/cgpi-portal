@@ -53,4 +53,14 @@ class AdminPendaftaranController extends Controller
             ->route('admin.pendaftaran.show', $id)
             ->with('success', 'Pendaftaran berhasil ditolak');
     }
+
+    public function destroy($id)
+    {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->delete();
+
+        return redirect()
+            ->route('admin.pendaftaran.index')
+            ->with('success', 'Pendaftaran berhasil dihapus');
+    }
 }

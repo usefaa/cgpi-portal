@@ -78,7 +78,7 @@
 
                             <td>
 
-                                {{ $loop->iteration }}
+                                {{ $pendaftarans->firstItem() + $loop->index }}
 
                             </td>
 
@@ -159,14 +159,22 @@
                             </td>
 
                             <td>
+                                <div class="d-flex gap-2">
+                                    <!-- Tombol Detail -->
+                                    <a href="{{ route('admin.pendaftaran.show',$item->id) }}"
+                                    class="btn btn-danger btn-sm">
+                                        Detail
+                                    </a>
 
-                                <a href="{{ route('admin.pendaftaran.show',$item->id) }}"
-                                   class="btn btn-danger btn-sm">
-
-                                    Detail
-
-                                </a>
-
+                                    <!-- Tombol Hapus -->
+                                    <form action="{{ route('admin.pendaftaran.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data pendaftaran ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Hapus Data">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
 
                         </tr>
@@ -196,10 +204,8 @@
 
     </div>
 
-    <div class="mt-4">
-
-        {{ $pendaftarans->links() }}
-
+    <div class="mt-4 d-flex justify-content-end">
+        {{ $pendaftarans->links('pagination::bootstrap-5') }}
     </div>
 
 </div>

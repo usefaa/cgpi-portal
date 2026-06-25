@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\KontakSettingController; // <- Import Controller Kontak Baru
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminBeritaController;
@@ -56,6 +57,11 @@ Route::view(
     '/tentang-kami',
     'tentang-kami.index'
 )->name('tentang.index');
+
+Route::get(
+    '/kontak',
+    [KontakSettingController::class, 'index']
+)->name('kontak.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -159,6 +165,11 @@ Route::middleware('auth')->group(function () {
         [AdminPendaftaranController::class, 'tolak']
     )->name('admin.pendaftaran.tolak');
 
+    Route::delete(
+        '/pendaftaran/{id}',
+        [App\Http\Controllers\Admin\AdminPendaftaranController::class, 'destroy']
+    )->name('admin.pendaftaran.destroy');
+
     /*
     |--------------------------------------------------------------------------
     | ADMIN BERITA
@@ -180,6 +191,23 @@ Route::middleware('auth')->group(function () {
         'admin/regulasi',
         AdminRegulasiController::class
     )->names('admin.regulasi');
+
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN PENGATURAN KONTAK (TAMBAHAN BARU)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/admin/pengaturan',
+        [KontakSettingController::class, 'adminEdit']
+    )->name('admin.pengaturan.edit');
+
+    Route::put(
+        '/admin/pengaturan',
+        [KontakSettingController::class, 'adminUpdate']
+    )->name('admin.pengaturan.update');
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';    

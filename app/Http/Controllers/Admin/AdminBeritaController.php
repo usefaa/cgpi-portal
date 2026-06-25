@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class AdminBeritaController extends Controller
 {
-    public function index()
+    // PERBAIKAN: Menambahkan Request $request untuk pencarian dan paginate()
+    public function index(Request $request)
     {
-        $berita = Berita::latest()->get();
+        $query = Berita::query();
 
-        return view('admin.berita.index', compact('berita'));
+        // Fitur pencarian berdasarkan judul
+        if ($request->filled('search')) {
+            $query->where('judul', 'like', '%' . $request->search . '%');
+        }
+
+        // Mengubah get() menjadi paginate(10)
+        $beritas = $query->latest()->paginate(10);
+
+        return view('admin.berita.index', compact('beritas'));
     }
 
     public function create()
@@ -33,11 +41,9 @@ class AdminBeritaController extends Controller
         $gambar = null;
 
         if ($request->hasFile('gambar')) {
-
             $file = $request->file('gambar');
-
             $namaFile = time() . '_' . $file->getClientOriginalName();
-
+            
             $file->move(
                 public_path('uploads/berita'),
                 $namaFile
@@ -83,9 +89,7 @@ class AdminBeritaController extends Controller
         $gambar = $berita->gambar;
 
         if ($request->hasFile('gambar')) {
-
             $file = $request->file('gambar');
-
             $namaFile = time().'_'.$file->getClientOriginalName();
 
             $file->move(
@@ -115,7 +119,6 @@ class AdminBeritaController extends Controller
 
         // hapus file gambar jika ada
         if ($berita->gambar) {
-
             $path = public_path($berita->gambar);
 
             if (file_exists($path)) {

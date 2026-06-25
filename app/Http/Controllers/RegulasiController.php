@@ -33,7 +33,7 @@ class RegulasiController extends Controller
 
         $regulasis = $query
             ->latest()
-            ->get();
+            ->paginate(5);
 
         return view(
             'regulasi.index',

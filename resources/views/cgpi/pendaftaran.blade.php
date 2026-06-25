@@ -2,50 +2,7 @@
 
 @section('content')
 
-<!-- HERO -->
-<div class="card border-0 shadow-sm overflow-hidden mb-5">
 
-    <div class="card-body p-5 text-white"
-         style="background:linear-gradient(135deg,#ED1C24,#C1121F);border-radius:20px;">
-
-        <div class="row align-items-center">
-
-            <div class="col-lg-8">
-
-                <span class="badge bg-light text-danger px-3 py-2 mb-3">
-                    PROGRAM CGPI 2025
-                </span>
-
-                <h1 class="display-5 fw-bold mb-3">
-                    Corporate Governance Perception Index
-                </h1>
-
-                <p class="fs-5 mb-3">
-                    Tema:
-                    <strong>
-                        "Membangun Ekosistem Bisnis dalam Kerangka GCG"
-                    </strong>
-                </p>
-
-                <p class="mb-0">
-                    Periode Pelaksanaan:
-                    Mei – November 2026
-                </p>
-
-            </div>
-
-            <div class="col-lg-4 text-center">
-
-                <i class="fas fa-file-signature"
-                   style="font-size:120px;opacity:.15;"></i>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
 <!-- INFORMASI -->
 <div class="card border-0 shadow-sm mb-4">

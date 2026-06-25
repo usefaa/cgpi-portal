@@ -3,15 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\Regulasi;
 use Illuminate\Http\Request;
 
 class AdminRegulasiController extends Controller
 {
-    public function index()
+    // PERBAIKAN: Menambahkan Request $request untuk membaca keyword pencarian
+    public function index(Request $request)
     {
-        $regulasis = Regulasi::latest()->get();
+        $query = Regulasi::query();
+
+        // Saring berdasarkan keyword judul jika ada
+        if ($request->filled('search')) {
+            $query->where('judul', 'like', '%' . $request->search . '%');
+        }
+
+        // Saring berdasarkan kategori jika dipilih
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        // Ambil data hasil pencarian
+        $regulasis = $query->latest()->paginate(5);
 
         return view('admin.regulasi.index', compact('regulasis'));
     }
@@ -22,11 +35,15 @@ class AdminRegulasiController extends Controller
             'judul' => 'required',
             'kategori' => 'required',
             'tahun' => 'required',
-            'file' => 'required|mimes:pdf'
+            'file' => 'required|mimes:pdf|max:10240' // Maksimal 10 MB (10240 Kilobytes)
+        ], [
+            // Pesan error kustom
+            'file.max' => 'Gagal! Ukuran file PDF terlalu besar. Maksimal hanya 10 MB. Silakan kompres file Anda terlebih dahulu.',
+            'file.mimes' => 'File harus berformat PDF.',
+            'file.required' => 'File PDF wajib diunggah.'
         ]);
 
-        $namaFile = time() . '_' .
-            $request->file('file')->getClientOriginalName();
+        $namaFile = time() . '_' . $request->file('file')->getClientOriginalName();
 
         $request->file('file')->move(
             public_path('uploads/regulasi'),
@@ -34,15 +51,10 @@ class AdminRegulasiController extends Controller
         );
 
         Regulasi::create([
-
             'judul' => $request->judul,
-
             'kategori' => $request->kategori,
-
             'tahun' => $request->tahun,
-
             'file' => 'uploads/regulasi/' . $namaFile
-
         ]);
 
         return redirect()
@@ -75,7 +87,6 @@ class AdminRegulasiController extends Controller
         ];
 
         if ($request->hasFile('file')) {
-
             $namaFile = time().'_'.$request->file('file')->getClientOriginalName();
 
             $request->file('file')->move(

@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root{
+:root {
+    /* Merah IICG sebagai AKSEN (Tombol & Menu Aktif) */
+    --primary: #C00000;
+    --primary-hover: #990000;
 
-    --primary:#1E3A8A;
-    --primary-hover:#34509e;
+    /* Sidebar menggunakan Midnight Blue / Navy Slate yang teduh */
+    --sidebar: #0F172A; 
 
-    --sidebar:#FFFFFF;
-    --sidebar-hover:#0852e6;
+    /* Latar konten menggunakan warna terang yang bersih */
+    --bg: #E0E0E0;
 
-    --bg:#EEEEEE;
-
-    --card:#FFFFFF;
-
-    --text:#111827;
-    --muted:#6B7280;
-
-    --border:#E5E7EB;
+    --card: #FFFFFF;
+    --text: #1E293B; /* Teks konten tetap charcoal/gelap */
+    --muted: #64748B;
+    --border: #ED1D5DB;
 }
 
 *{
@@ -80,11 +79,11 @@ body{
     flex-shrink:0;
 }
 
-.sidebar-brand-text{
-    font-size:13px;
-    line-height:1.4;
-    color:black;
-    font-weight:500;
+.sidebar-brand-text {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #FFFFFF; /* Ubah ini jadi putih */
+    font-weight: 700;
 }
 
 
@@ -113,34 +112,31 @@ body{
     border-radius:20px;
 }
 
-.sidebar-link{
-    display:flex;
-    align-items:center;
-
-    padding:12px 14px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    color:#334155;;
-
-    font-size:14px;
-    font-weight:500;
-
-    transition:.2s;
-
-    margin-bottom:4px;
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #94A3B8; /* Ubah ke abu-abu terang */
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .2s;
+    margin-bottom: 4px;
+    border-left: 4px solid transparent;
 }
 
-.sidebar-link:hover{
-    background:#F1F5F9;
-    color:#1E3A8A;
+/* Saat mouse diarahkan (Hover) */
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.1); /* Sorotan transparan redup, bukan putih solid */
+    color: #FFFFFF;
 }
 
-.sidebar-link.active{
-    background:#1E3A8A;
-    color:#FFFFFF;
+.sidebar-link.active {
+    background: rgba(255, 255, 255, 0.05); /* Sedikit terang saja */
+    color: #FFFFFF;
+    font-weight: 600;
+    border-left: 4px solid var(--primary); /* Aksen garis merah IICG */
 }
 
 .submenu{
@@ -149,29 +145,25 @@ body{
     padding-left:10px;
 }
 
-.submenu-toggle{
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:14px 18px;
-
-    background:transparent;
-    border:none;
-    border-radius:12px;
-
-    color:#475569;
-    font-size:16px;
-    font-weight:500;
-
-    cursor:pointer;
-    transition:.2s;
+.submenu-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: #94A3B8; /* Ubah ke abu-abu terang */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.submenu-toggle:hover{
-    background:#F1F5F9;
-    color:#1E3A8A;
+.submenu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
 }
 
 .guest-action{
@@ -210,15 +202,16 @@ body{
     opacity:.9;
 }
 
-.sidebar-btn-outline{
-    background:#fff;
-    color:var(--primary);
-    border:1px solid var(--primary);
+.sidebar-btn-outline {
+    background: transparent;
+    color: #E2E8F0; /* Teks abu terang */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Garis transparan */
 }
 
-.sidebar-btn-outline:hover{
-    background:#EFF6FF;
-    color:var(--primary);
+.sidebar-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1); /* Efek redup saat diklik */
+    color: #FFFFFF;
+    border-color: #FFFFFF;
 }
 
 .sidebar-user{
@@ -248,15 +241,16 @@ body{
     font-weight:700;
 }
 
-.sidebar-user-name{
-    color:#0F172A;
-    font-size:13px;
-    font-weight:600;
+.sidebar-user-name {
+    color: #FFFFFF !important; /* Paksa jadi putih terang */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
-.sidebar-user-role{
-    color:#94A3B8;
-    font-size:11px;
+.sidebar-user-role {
+    color: #8A99AF !important; /* Abu-abu terang */
+    font-size: 12px;
 }
 
 .sidebar-logout{
@@ -304,7 +298,7 @@ body{
 .topbar{
     height:72px;
 
-    background:white;
+    background:#E2E8F0;
 
     border-bottom:1px solid var(--border);
 
@@ -405,19 +399,12 @@ body{
    CARD
 ===================================================== */
 
-.card{
-    border:none !important;
-
-    border-radius:18px !important;
-
-    background:white;
-
-    box-shadow:
-        0 4px 20px rgba(15,23,42,.04) !important;
-
-    overflow:hidden;
-
-    transition:.2s;
+.card {
+    background-color: var(--card) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Border sedikit dipertegas */
+    border-radius: 12px !important; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important; /* Bayangan tipis saja */
+    overflow: hidden;
 }
 
 .card:hover{

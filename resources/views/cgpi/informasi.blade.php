@@ -4,241 +4,109 @@
 
 <div class="container-fluid">
 
-    <div class="row g-4 mb-4">
+    <div class="card">
 
-        <div class="col-xl-8">
+        <div class="card-body p-5">
 
-            <div class="card">
+            <!-- AWARD -->
+            <div class="text-center mb-5">
 
-                <div class="card-body p-4">
+                <div class="row justify-content-center">
 
-                    <span class="badge bg-danger-subtle text-danger mb-3">
-                        CORPORATE GOVERNANCE PERCEPTION INDEX
-                    </span>
+                    <div class="col-md-3">
+                        <img src="{{ asset('images/trusted.png') }}"
+                             class="img-fluid"
+                             style="max-height:220px;">
+                    </div>
 
-                    <h2 class="fw-bold mb-3">
-                        Program Pemeringkatan Tata Kelola Perusahaan Indonesia
-                    </h2>
+                    <div class="col-md-3">
+                        <img src="{{ asset('images/most-trusted.png') }}"
+                             class="img-fluid"
+                             style="max-height:220px;">
+                    </div>
 
-                    <p class="text-muted mb-4">
-
-                        Corporate Governance Perception Index (CGPI) merupakan program riset dan pemeringkatan implementasi Good Corporate Governance yang diselenggarakan oleh IICG untuk meningkatkan kualitas tata kelola perusahaan di Indonesia.
-
-                    </p>
-
-                    <div class="d-flex flex-wrap gap-2">
-
-                        <a href="{{ route('cgpi.pendaftaran') }}"
-                           class="btn btn-danger">
-
-                            Daftar Program
-
-                        </a>
-
-                        <a href="#manfaat"
-                           class="btn btn-light border">
-
-                            Pelajari Lebih Lanjut
-
-                        </a>
-
+                    <div class="col-md-3">
+                        <img src="{{ asset('images/fair-trusted.png') }}"
+                             class="img-fluid"
+                             style="max-height:220px;">
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <!-- DESKRIPSI -->
 
-        <div class="col-xl-4">
+            <div class="content-text">
 
-            <div class="card h-100">
+                <p>
+                    Corporate Governance Perception Index merupakan Program Pemeringkatan praktik Good Corporate Governance (GCG) di Perusahaan yang dilakukan sejak tahun 2001 dengan menggunakan pendekatan tematik yang menyesuaikan dengan perkembangan bisnis. Program ini merupakan program tahunan yang menilai implementasi GCG dengan rentang waktu satu tahun penuh.
+                </p>
 
-                <div class="card-body d-flex align-items-center justify-content-center">
+                <p>
+                    IICG den Majalah SWA memberikan apresiasi den pengakuan kepada perusahaan-perusahaan yang berkomitmen menerapkan GCG dan mengikuti program CGPI melalui Indonesia Most Trusted Companies Awards.
+                </p>
 
-                    <img src="{{ asset('images/IICG logo.jpeg') }}"
-                         class="img-fluid"
-                         style="max-height:150px;">
+                <p>
+                    CGPI 2020 mengangkat tema: "Membangun Ketahanan Perusahaan Dalam Kerangka Good Corporate Governance"
+                </p>
 
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="row g-4 mb-4">
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card dashboard-card">
-
-                <div class="card-body">
-
-                    <div class="text-muted small mb-2">
-                        Program
-                    </div>
-
-                    <h4 class="fw-bold mb-0">
-                        CGPI
-                    </h4>
-
-                </div>
+                <p>
+                    Untuk pendaftaran dan keterangan lebih lanjut terkait program CGPI kami, dapat menghubungi:
+                </p>
 
             </div>
 
-        </div>
+            <!-- KONTAK -->
 
-        <div class="col-lg-3 col-md-6">
+            <div class="mt-5">
 
-            <div class="card dashboard-card">
+                <h4 class="fw-bold mb-3">
+                    Informasi Program
+                </h4>
 
-                <div class="card-body">
+                <p class="mb-1">
+                    <strong>IICG</strong>
+                </p>
 
-                    <div class="text-muted small mb-2">
-                        Penyelenggara
-                    </div>
+                <p class="mb-1">
+                    Jalan Raya Pasar Jumat No.44A Jakarta 12310
+                </p>
 
-                    <h4 class="fw-bold mb-0">
-                        IICG
-                    </h4>
+                <p class="mb-1">
+                    Telp: (021) 7695898-99
+                </p>
 
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card dashboard-card">
-
-                <div class="card-body">
-
-                    <div class="text-muted small mb-2">
-                        Fokus
-                    </div>
-
-                    <h6 class="fw-bold mb-0">
-                        Good Corporate Governance
-                    </h6>
-
-                </div>
+                <p>
+                    Email: secretary@iicg.org
+                </p>
 
             </div>
 
-        </div>
+            <!-- PUBLIKASI -->
 
-        <div class="col-lg-3 col-md-6">
+            <div class="mt-5">
 
-            <div class="card dashboard-card">
+                <h4 class="fw-bold mb-4">
+                    Publikasi CGPI
+                </h4>
 
-                <div class="card-body">
+                <div class="row g-4">
 
-                    <div class="text-muted small mb-2">
-                        Peserta
-                    </div>
+                    @for($i=2001;$i<=2019;$i++)
 
-                    <h6 class="fw-bold mb-0">
-                        Perusahaan Indonesia
-                    </h6>
+                    <div class="col-lg-2 col-md-3 col-6 text-center">
 
-                </div>
+                        <img src="{{ asset('images/cgpi/cgpi'.$i.'.png') }}"
+                             class="img-fluid shadow-sm rounded">
 
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="card mb-4">
-
-        <div class="card-body p-4">
-
-            <h4 class="fw-bold mb-3">
-                Tentang CGPI
-            </h4>
-
-            <p class="text-muted mb-0">
-
-                Corporate Governance Perception Index (CGPI) adalah program riset dan pemeringkatan yang bertujuan mendorong penerapan Good Corporate Governance secara berkelanjutan. Program ini menjadi salah satu acuan nasional dalam mengukur kualitas tata kelola perusahaan.
-
-            </p>
-
-        </div>
-
-    </div>
-
-    <div id="manfaat">
-
-        <h4 class="fw-bold mb-4">
-            Manfaat Mengikuti CGPI
-        </h4>
-
-        <div class="row g-4">
-
-            <div class="col-lg-4">
-
-                <div class="card h-100">
-
-                    <div class="card-body">
-
-                        <h5 class="fw-bold mb-3">
-                            Evaluasi Tata Kelola
-                        </h5>
-
-                        <p class="text-muted mb-0">
-
-                            Mengukur efektivitas implementasi Good Corporate Governance secara objektif dan terstruktur.
-
-                        </p>
+                        <div class="fw-semibold mt-2">
+                            CGPI {{ $i }}
+                        </div>
 
                     </div>
 
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-                <div class="card h-100">
-
-                    <div class="card-body">
-
-                        <h5 class="fw-bold mb-3">
-                            Benchmark Nasional
-                        </h5>
-
-                        <p class="text-muted mb-0">
-
-                            Membandingkan praktik tata kelola perusahaan dengan standar terbaik di Indonesia.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-                <div class="card h-100">
-
-                    <div class="card-body">
-
-                        <h5 class="fw-bold mb-3">
-                            Peningkatan Reputasi
-                        </h5>
-
-                        <p class="text-muted mb-0">
-
-                            Meningkatkan kepercayaan investor, regulator, mitra bisnis dan stakeholder perusahaan.
-
-                        </p>
-
-                    </div>
+                    @endfor
 
                 </div>
 

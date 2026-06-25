@@ -132,49 +132,36 @@ class PendaftaranController extends Controller
     public function uploadDokumen(Request $request, $id)
     {
         $request->validate([
-
-            'file_ttd' => 'nullable|mimes:pdf|max:10240',
-
-            'bukti_pembayaran' => 'nullable|mimes:jpg,jpeg,png,pdf|max:10240',
-
+            'file_ttd' => 'nullable|file|mimes:pdf|max:10240',
+            'bukti_pembayaran' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:10240',
         ]);
 
         $pendaftaran = Pendaftaran::findOrFail($id);
 
-        if ($pendaftaran->user_id != auth()->id()) {
-            abort(403);
-        }
-
+        // 1. Handle File TTD
         if ($request->hasFile('file_ttd')) {
-
-            $fileTtd = $request->file('file_ttd')
-                ->store('formulir-ttd', 'public');
-
-            $pendaftaran->file_ttd = $fileTtd;
+            $file = $request->file('file_ttd');
+            // Simpan manual ke folder public/formulir-ttd
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/formulir-ttd'), $filename);
+            $pendaftaran->file_ttd = 'formulir-ttd/' . $filename;
         }
 
+        // 2. Handle Bukti Pembayaran
         if ($request->hasFile('bukti_pembayaran')) {
-
-            $bukti = $request->file('bukti_pembayaran')
-                ->store('bukti-pembayaran', 'public');
-
-            $pendaftaran->bukti_pembayaran = $bukti;
+            $file = $request->file('bukti_pembayaran');
+            // Simpan manual ke folder public/bukti-pembayaran (SESUAI NAMA FOLDER ANDA)
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/bukti-pembayaran'), $filename);
+            $pendaftaran->bukti_pembayaran = 'bukti-pembayaran/' . $filename;
         }
 
-        if (
-            $pendaftaran->file_ttd &&
-            $pendaftaran->bukti_pembayaran
-        ) {
+        if ($pendaftaran->file_ttd && $pendaftaran->bukti_pembayaran) {
             $pendaftaran->status = 'Menunggu Verifikasi';
         }
 
         $pendaftaran->save();
 
-        return redirect()
-            ->route('pendaftaran.status')
-            ->with(
-                'success',
-                'Dokumen berhasil diupload.'
-            );
+        return redirect()->route('pendaftaran.status')->with('success', 'Dokumen berhasil diupload.');
     }
 }

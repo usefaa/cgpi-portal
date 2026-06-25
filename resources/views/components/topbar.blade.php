@@ -34,7 +34,7 @@
         elseif(request()->routeIs('berita.*')){
             $pageTitle = 'Berita';
         }
-        elseif(request()->routeIs('tentang.*')){
+        elseif(request()->routeIs('kontak.*')){
             $pageTitle = 'Kontak';
         }
         elseif(request()->routeIs('admin.dashboard')){
@@ -48,6 +48,9 @@
         }
         elseif(request()->routeIs('admin.regulasi.*')){
             $pageTitle = 'Manajemen Regulasi';
+        }
+        elseif(request()->routeIs('admin.pengaturan.*')){
+            $pageTitle = 'Pengaturan Kontak';
         }
 
         @endphp
